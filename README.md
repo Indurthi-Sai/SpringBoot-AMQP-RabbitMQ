@@ -1,11 +1,11 @@
-### What is RabbitMQ?**
+### **What is RabbitMQ?**
 
 RabbitMQ is an open-source message broker software that facilitates communication between different services (producers and consumers) by handling message queues. 
 It allows asynchronous communication and decouples the sender (producer) from the receiver (consumer), which is particularly useful in microservices architectures, distributed systems, and event-driven applications.
 RabbitMQ is based on the Advanced Message Queuing Protocol (AMQP) and supports other protocols like STOMP and MQTT. 
 It efficiently routes, stores, and delivers messages between various components of an application or between different applications.
 
-**Key Components of RabbitMQ**
+### **Key Components of RabbitMQ**
 
 1. **Producer**:
    - The component responsible for creating and sending messages.
@@ -61,22 +61,22 @@ It efficiently routes, stores, and delivers messages between various components 
     - Useful for handling failed messages for further analysis or retry.
 
 
-**How to Install and Run RabbitMQ in Docker**
+### **How to Install and Run RabbitMQ in Docker**
 
 Using Docker to run RabbitMQ is a quick and easy method for setting up the service in a local development environment or even in production. 
 Here's how you can set it up, along with instructions for creating exchanges, queues, and bindings.
 1. **Install RabbitMQ with Docker**
-  Ensure you have Docker on your machine. You can install Docker from [Docker's official website](https://www.docker.com/products/docker-desktop).
+   Ensure you have Docker on your machine. You can install Docker from [Docker's official website](https://www.docker.com/products/docker-desktop).
 
     **Step 1: Pull the RabbitMQ Docker Image**
-      Use the following command to pull the RabbitMQ image from Docker Hub:
-      docker pull rabbitmq:3-management
-      The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
+   Use the following command to pull the RabbitMQ image from Docker Hub:
+            ```docker pull rabbitmq:3-management
+   The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
     
     **Step 2: Run RabbitMQ in a Docker Container**
-      Run the RabbitMQ container with the following command:
-      docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
-      
+   Run the RabbitMQ container with the following command:
+         ```docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+   
     - '-d': Runs the container in the background.
       -'--name rabbitmq': Assigns a name to the container.
     - '-p 5672:5672': Maps RabbitMQ's main service port.
@@ -129,22 +129,18 @@ In this Spring Boot application, we will demonstrate how RabbitMQ sends messages
 We will create two queues, bind them to one exchange using two different routing keys, and route messages accordingly.
 
 Follow the steps below to configure RabbitMQ using its web interface and Spring Boot:
-
-1. **Login to RabbitMQ Management UI**  
-   Open your browser and log in to the RabbitMQ web interface at: [http://localhost:15672](http://localhost:15672).
-
-2. **Create an Exchange**  
-   Navigate to the **Exchanges** tab and create a new exchange named **`rabbitmq.exchange.demo`**. 
-
-3. **Create Two Queues**  
-   Go to the **Queues** tab and create the following two queues:
-   - **`rabbitmq.queue.demo`**
-   - **`rabbitmq.jsonQueue.demo`**
-
-4. **Bind Queues to the Exchange with Routing Keys**  
-   Bind the two queues to the **`rabbitmq.exchange.demo`** exchange using the following routing keys:
-   - **`rabbitmq.routingkey.demo`** for **`rabbitmq.queue.demo`**.
-   - **`rabbitmq.jsonQueue.routingKey`** for **`rabbitmq.jsonQueue.demo`**.
+   1. **Login to RabbitMQ Management UI**
+      Open your browser and log in to the RabbitMQ web interface at: [http://localhost:15672](http://localhost:15672).
+   2. **Create an Exchange**
+      Navigate to the **Exchanges** tab and create a new exchange named **`rabbitmq.exchange.demo`**.
+   3. **Create Two Queues**
+      Go to the **Queues** tab and create the following two queues:
+      - **`rabbitmq.queue.demo`**
+      - **`rabbitmq.jsonQueue.demo`**
+   4. **Bind Queues to the Exchange with Routing Keys**
+      Bind the two queues to the **`rabbitmq.exchange.demo`** exchange using the following routing keys:
+      - **`rabbitmq.routingkey.demo`** for **`rabbitmq.queue.demo`**.
+      - **`rabbitmq.jsonQueue.routingKey`** for **`rabbitmq.jsonQueue.demo`**.
 
 By following these steps, you'll set up an exchange and two queues in RabbitMQ, and messages will be routed to the respective queues based on their routing keys.
 
