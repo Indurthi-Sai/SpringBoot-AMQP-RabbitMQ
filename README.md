@@ -1,4 +1,4 @@
-**What is RabbitMQ?**
+### What is RabbitMQ?**
 
 RabbitMQ is an open-source message broker software that facilitates communication between different services (producers and consumers) by handling message queues. 
 It allows asynchronous communication and decouples the sender (producer) from the receiver (consumer), which is particularly useful in microservices architectures, distributed systems, and event-driven applications.
@@ -67,13 +67,14 @@ Using Docker to run RabbitMQ is a quick and easy method for setting up the servi
 Here's how you can set it up, along with instructions for creating exchanges, queues, and bindings.
 1. **Install RabbitMQ with Docker**
   Ensure you have Docker on your machine. You can install Docker from [Docker's official website](https://www.docker.com/products/docker-desktop).
+
     **Step 1: Pull the RabbitMQ Docker Image**
-    Use the following command to pull the RabbitMQ image from Docker Hub:
+      Use the following command to pull the RabbitMQ image from Docker Hub:
       docker pull rabbitmq:3-management
-    The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
+      The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
     
     **Step 2: Run RabbitMQ in a Docker Container**
-    Run the RabbitMQ container with the following command:
+      Run the RabbitMQ container with the following command:
       docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
       
     - '-d': Runs the container in the background.
@@ -81,45 +82,45 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
     - '-p 5672:5672': Maps RabbitMQ's main service port.
     - '-p 15672:15672': Maps the management plugin's web UI port.
     
-    After running the command, RabbitMQ will be accessible at:
-    **RabbitMQ service**: 'localhost:5672'
-    **RabbitMQ Management Web UI**: 'http://localhost:15672'
-    
-    You can log in to the web UI using the default credentials:
-    **Username**: guest
-    **Password**: guest
+   After running the command, RabbitMQ will be accessible at:
+   **RabbitMQ service**: 'localhost:5672'
+   **RabbitMQ Management Web UI**: 'http://localhost:15672'
+   
+   You can log in to the web UI using the default credentials:
+   **Username**: guest
+   **Password**: guest
 
-2. **Create Exchanges, Queues, and Bindings via Web UI**
-      You can create exchanges, queues, and bindings either programmatically or using the RabbitMQ Management Web UI.
+3. **Create Exchanges, Queues, and Bindings via Web UI**
+   You can create exchanges, queues, and bindings either programmatically or using the RabbitMQ Management Web UI.
 
 **Step 1: Access the RabbitMQ Web UI**
-    Go to http://localhost:15672 and log in with the default credentials (guest/guest).
+   Go to http://localhost:15672 and log in with the default credentials (guest/guest).
 **Step 2: Create a Queue**
-    1. Navigate to the **Queues** tab.
-    2. Click the **Add a new queue** button.
-    3. Enter the following details:
-       - **Name**: Choose a name for your queue, e.g., `myQueue`.
-       - **Durable**: Check this option if you want the queue to survive server restarts.
-       - **Auto-delete**: Leave unchecked unless you want the queue to be deleted when the last consumer disconnects.
-    4. Click **Add Queue**.
+   1. Navigate to the **Queues** tab.
+   2. Click the **Add a new queue** button.
+   3. Enter the following details:
+      **Name**: Choose a name for your queue, e.g., `myQueue`.
+      **Durable**: Check this option if you want the queue to survive server restarts.
+      **Auto-delete**: Leave unchecked unless you want the queue to be deleted when the last consumer disconnects.
+   4. Click **Add Queue**.
        
 **Step 3: Create an Exchange**
-    1. Go to the **Exchanges** tab.
-    2. Click the **Add a new exchange** button.
-    3. Enter the following details:
+   1. Go to the **Exchanges** tab.
+   2. Click the **Add a new exchange** button.
+   3. Enter the following details:
        - **Name**: Choose a name for your exchange, e.g., `myExchange`.
        - **Type**: Select an exchange type (common options are `direct`, `topic`, `fanout`).
        - **Durable**: Check this if you want the exchange to persist after a restart.
-    4. Click **Add Exchange**.
+   4. Click **Add Exchange**.
        
 **Step 4: Bind the Queue to the Exchange**
-    1. Go to the **Queues** tab and select the queue you just created (e.g., `myQueue`).
-    2. Scroll down to the **Bindings** section.
-    3. Click the **Add binding from this queue** button.
-    4. Enter the following details:
-       - **From Exchange**: Choose the exchange you created (e.g., `myExchange`).
-       - **Routing Key**: Enter a routing key (e.g., `myRoutingKey`).
-    5. Click **Bind**.
+1. Go to the **Queues** tab and select the queue you just created (e.g., `myQueue`).
+2. Scroll down to the **Bindings** section.
+3. Click the **Add binding from this queue** button.
+4. Enter the following details:
+   **From Exchange**: Choose the exchange you created (e.g., `myExchange`).
+   **Routing Key**: Enter a routing key (e.g., `myRoutingKey`).
+5. Click **Bind**.
 
 
 ### Steps to Create Exchange, Queues, and Bindings with Routing Keys in Spring Boot AMQP RabbitMQ Example
@@ -174,15 +175,19 @@ After setting up RabbitMQ, follow these steps to check out the code from the Git
     **a. To Produce and Consume String Messages:**
     
     - Send a GET request to the following URL:
+    - Here, you can replace **`hello`** with your desired message.
       
-      http://localhost:8080/api/v1/publish?message=hello
-      Here, you can replace **`hello`** with your desired message.
+            http://localhost:8080/api/v1/publish?message=hello
+      
     
     **b. To Produce and Consume JSON Messages:**
-         Send a POST request to the following URL:
-         http://localhost:8080/api/v1/publishJson
    
-            Include the following JSON in the request body:
+   - Send a POST request to the following URL:
+   -  Include the following JSON in the request body:
+     
+           http://localhost:8080/api/v1/publishJson
+     
+           
             {
               "id": 1,
               "firstName": "John",
@@ -190,10 +195,10 @@ After setting up RabbitMQ, follow these steps to check out the code from the Git
             }
 
 6. **Optional: Comment Out Consumer Code**
-    If you want to see only the produced messages in RabbitMQ without consuming them, you can comment out the consumer code in the Spring Boot application.
-    This way, you can produce messages using the above endpoints and check the produced messages in the RabbitMQ web interface.
+   If you want to see only the produced messages in RabbitMQ without consuming them, you can comment out the consumer code in the Spring Boot application.
+   This way, you can produce messages using the above endpoints and check the produced messages in the RabbitMQ web interface.
    
 By following these steps, you will be able to run the Spring Boot application and test the message production and consumption functionalities using RabbitMQ.
 
-## Additional Resources
+### Additional Resources
   If you are looking for a complete guide on RabbitMQ, visit the official [RabbitMQ Tutorials](https://www.rabbitmq.com/tutorials).
