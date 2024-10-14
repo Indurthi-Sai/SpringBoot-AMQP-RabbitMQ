@@ -70,12 +70,15 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
 
     **Step 1: Pull the RabbitMQ Docker Image**
    Use the following command to pull the RabbitMQ image from Docker Hub:
-            ```docker pull rabbitmq:3-management
+   
+               docker pull rabbitmq:3-management
+   
    The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
     
     **Step 2: Run RabbitMQ in a Docker Container**
    Run the RabbitMQ container with the following command:
-         ```docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+   
+               docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
    
     - '-d': Runs the container in the background.
       -'--name rabbitmq': Assigns a name to the container.
@@ -83,12 +86,12 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
     - '-p 15672:15672': Maps the management plugin's web UI port.
     
    After running the command, RabbitMQ will be accessible at:
-   **RabbitMQ service**: 'localhost:5672'
-   **RabbitMQ Management Web UI**: 'http://localhost:15672'
+   - **RabbitMQ service**: 'localhost:5672'
+   - **RabbitMQ Management Web UI**: 'http://localhost:15672'
    
    You can log in to the web UI using the default credentials:
-   **Username**: guest
-   **Password**: guest
+   - **Username**: guest
+   - **Password**: guest
 
 3. **Create Exchanges, Queues, and Bindings via Web UI**
    You can create exchanges, queues, and bindings either programmatically or using the RabbitMQ Management Web UI.
