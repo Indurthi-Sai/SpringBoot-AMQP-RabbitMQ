@@ -149,7 +149,7 @@ By following these steps, you'll set up an exchange and two queues in RabbitMQ, 
 
 ### Running the Spring Boot Application and Testing Message Production and Consumption
 
-    After setting up RabbitMQ, follow these steps to check out the code from the Git repository, open it in your favorite IDE, and run the Spring Boot application. Ensure that RabbitMQ is running locally before starting the Spring Boot app.
+After setting up RabbitMQ, follow these steps to check out the code from the Git repository, open it in your favorite IDE, and run the Spring Boot application. Ensure that RabbitMQ is running locally before starting the Spring Boot app.
 
 1. **Clone the Git Repository**
 
