@@ -66,9 +66,11 @@ It efficiently routes, stores, and delivers messages between various components 
 Using Docker to run RabbitMQ is a quick and easy method for setting up the service in a local development environment or even in production. 
 Here's how you can set it up, along with instructions for creating exchanges, queues, and bindings.
 1. **Install RabbitMQ with Docker**
+
    Ensure you have Docker on your machine. You can install Docker from [Docker's official website](https://www.docker.com/products/docker-desktop).
 
     **Step 1: Pull the RabbitMQ Docker Image**
+   
    Use the following command to pull the RabbitMQ image from Docker Hub:
    
          docker pull rabbitmq:3-management
@@ -76,6 +78,7 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
    The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
     
     **Step 2: Run RabbitMQ in a Docker Container**
+   
    Run the RabbitMQ container with the following command:
    
          docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
@@ -93,19 +96,21 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
    - **Username**: guest
    - **Password**: guest
 
-3. **Create Exchanges, Queues, and Bindings via Web UI**
+2. **Create Exchanges, Queues, and Bindings via Web UI**
    You can create exchanges, queues, and bindings either programmatically or using the RabbitMQ Management Web UI.
 
    **Step 1: Access the RabbitMQ Web UI**
+   
       Go to http://localhost:15672 and log in with the default credentials (guest/guest).
+   
    **Step 2: Create a Queue**
       1. Navigate to the **Queues** tab.
       2. Click the **Add a new queue** button.
       3. Enter the following details:
-         **Name**: Choose a name for your queue, e.g., `myQueue`.
-         **Durable**: Check this option if you want the queue to survive server restarts.
-         **Auto-delete**: Leave unchecked unless you want the queue to be deleted when the last consumer disconnects.
-      4. Click **Add Queue**.
+         - **Name**: Choose a name for your queue, e.g., `myQueue`.
+         - **Durable**: Check this option if you want the queue to survive server restarts.
+         - **Auto-delete**: Leave unchecked unless you want the queue to be deleted when the last consumer disconnects.
+      5. Click **Add Queue**.
           
    **Step 3: Create an Exchange**
       1. Go to the **Exchanges** tab.
@@ -133,14 +138,21 @@ We will create two queues, bind them to one exchange using two different routing
 
 Follow the steps below to configure RabbitMQ using its web interface and Spring Boot:
    1. **Login to RabbitMQ Management UI**
+      
       Open your browser and log in to the RabbitMQ web interface at: [http://localhost:15672](http://localhost:15672).
+      
    2. **Create an Exchange**
+      
       Navigate to the **Exchanges** tab and create a new exchange named **`rabbitmq.exchange.demo`**.
+      
    3. **Create Two Queues**
+      
       Go to the **Queues** tab and create the following two queues:
       - **`rabbitmq.queue.demo`**
       - **`rabbitmq.jsonQueue.demo`**
+        
    4. **Bind Queues to the Exchange with Routing Keys**
+      
       Bind the two queues to the **`rabbitmq.exchange.demo`** exchange using the following routing keys:
       - **`rabbitmq.routingkey.demo`** for **`rabbitmq.queue.demo`**.
       - **`rabbitmq.jsonQueue.routingKey`** for **`rabbitmq.jsonQueue.demo`**.
@@ -194,8 +206,7 @@ After setting up RabbitMQ, follow these steps to check out the code from the Git
             }
 
 6. **Optional: Comment Out Consumer Code**
-   If you want to see only the produced messages in RabbitMQ without consuming them, you can comment out the consumer code in the Spring Boot application.
-   This way, you can produce messages using the above endpoints and check the produced messages in the RabbitMQ web interface.
+   - If you want to see only the produced messages in RabbitMQ without consuming them, you can comment out the consumer code in the Spring Boot application. This way, you can produce messages using the above endpoints and check the produced messages in the RabbitMQ web interface.
    
 By following these steps, you will be able to run the Spring Boot application and test the message production and consumption functionalities using RabbitMQ.
 
