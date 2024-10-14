@@ -71,14 +71,14 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
     **Step 1: Pull the RabbitMQ Docker Image**
    Use the following command to pull the RabbitMQ image from Docker Hub:
    
-      docker pull rabbitmq:3-management
+         docker pull rabbitmq:3-management
    
    The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
     
     **Step 2: Run RabbitMQ in a Docker Container**
    Run the RabbitMQ container with the following command:
    
-      docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+         docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
    
     - '-d': Runs the container in the background.
       -'--name rabbitmq': Assigns a name to the container.
