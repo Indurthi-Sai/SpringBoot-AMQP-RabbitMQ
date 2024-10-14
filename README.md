@@ -71,14 +71,14 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
     **Step 1: Pull the RabbitMQ Docker Image**
    Use the following command to pull the RabbitMQ image from Docker Hub:
    
-               docker pull rabbitmq:3-management
+      docker pull rabbitmq:3-management
    
    The `3-management` tag includes the RabbitMQ Management Plugin, which provides a web UI to monitor queues, exchanges, and bindings.
     
     **Step 2: Run RabbitMQ in a Docker Container**
    Run the RabbitMQ container with the following command:
    
-               docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+      docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
    
     - '-d': Runs the container in the background.
       -'--name rabbitmq': Assigns a name to the container.
@@ -96,34 +96,34 @@ Here's how you can set it up, along with instructions for creating exchanges, qu
 3. **Create Exchanges, Queues, and Bindings via Web UI**
    You can create exchanges, queues, and bindings either programmatically or using the RabbitMQ Management Web UI.
 
-**Step 1: Access the RabbitMQ Web UI**
-   Go to http://localhost:15672 and log in with the default credentials (guest/guest).
-**Step 2: Create a Queue**
-   1. Navigate to the **Queues** tab.
-   2. Click the **Add a new queue** button.
-   3. Enter the following details:
-      **Name**: Choose a name for your queue, e.g., `myQueue`.
-      **Durable**: Check this option if you want the queue to survive server restarts.
-      **Auto-delete**: Leave unchecked unless you want the queue to be deleted when the last consumer disconnects.
-   4. Click **Add Queue**.
-       
-**Step 3: Create an Exchange**
-   1. Go to the **Exchanges** tab.
-   2. Click the **Add a new exchange** button.
-   3. Enter the following details:
-       - **Name**: Choose a name for your exchange, e.g., `myExchange`.
-       - **Type**: Select an exchange type (common options are `direct`, `topic`, `fanout`).
-       - **Durable**: Check this if you want the exchange to persist after a restart.
-   4. Click **Add Exchange**.
-       
-**Step 4: Bind the Queue to the Exchange**
-1. Go to the **Queues** tab and select the queue you just created (e.g., `myQueue`).
-2. Scroll down to the **Bindings** section.
-3. Click the **Add binding from this queue** button.
-4. Enter the following details:
-   **From Exchange**: Choose the exchange you created (e.g., `myExchange`).
-   **Routing Key**: Enter a routing key (e.g., `myRoutingKey`).
-5. Click **Bind**.
+   **Step 1: Access the RabbitMQ Web UI**
+      Go to http://localhost:15672 and log in with the default credentials (guest/guest).
+   **Step 2: Create a Queue**
+      1. Navigate to the **Queues** tab.
+      2. Click the **Add a new queue** button.
+      3. Enter the following details:
+         **Name**: Choose a name for your queue, e.g., `myQueue`.
+         **Durable**: Check this option if you want the queue to survive server restarts.
+         **Auto-delete**: Leave unchecked unless you want the queue to be deleted when the last consumer disconnects.
+      4. Click **Add Queue**.
+          
+   **Step 3: Create an Exchange**
+      1. Go to the **Exchanges** tab.
+      2. Click the **Add a new exchange** button.
+      3. Enter the following details:
+          - **Name**: Choose a name for your exchange, e.g., `myExchange`.
+          - **Type**: Select an exchange type (common options are `direct`, `topic`, `fanout`).
+          - **Durable**: Check this if you want the exchange to persist after a restart.
+      4. Click **Add Exchange**.
+          
+   **Step 4: Bind the Queue to the Exchange**
+      1. Go to the **Queues** tab and select the queue you just created (e.g., `myQueue`).
+      2. Scroll down to the **Bindings** section.
+      3. Click the **Add binding from this queue** button.
+      4. Enter the following details:
+         - **From Exchange**: Choose the exchange you created (e.g., `myExchange`).
+         - **Routing Key**: Enter a routing key (e.g., `myRoutingKey`).
+      6. Click **Bind**.
 
 
 ### Steps to Create Exchange, Queues, and Bindings with Routing Keys in Spring Boot AMQP RabbitMQ Example
